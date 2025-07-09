@@ -65,33 +65,47 @@ class Klinik33:  # Mendefinisikan class Klinik33 sebagai manajemen utama klinik
                 return  # Keluar dari method setelah hapus
         print("Pasien tidak ditemukan.\n")  # Output jika pasien tidak ditemukan
 
+# CARI pasien berdasarkan nama
+    def cari_pasien(self):
+        keyword = input("Masukkan nama pasien yang ingin dicari: ")
+        hasil = [p for p in self.pasien if keyword.lower() in p.nama.lower()]
+        print("\n=== Hasil Pencarian ===")
+        if hasil:
+            for p in hasil:
+                print(f"Nama: {p.nama}, Umur: {p.umur}")
+        else:
+            print("Pasien tidak ditemukan.\n")
+
+
     # Menu utama dengan CRUD
+        # Menu utama dengan CRUD
     def menu(self):  # Method untuk menampilkan dan menjalankan menu utama
         while True:  
-        # Looping tanpa batas sampai user memilih keluar
-            print("=== Manajemen Klinik CRUD ===")  # Judul menu
-            print("1. Tambah Pasien (Create)")  # Opsi 1
-            print("2. Lihat Pasien (Read)")  # Opsi 2
-            print("3. Update Data Pasien (Update)")  # Opsi 3
-            print("4. Hapus Data Pasien (Delete)")  # Opsi 4
-            print("5. Keluar")  # Opsi 5
+            # Looping tanpa batas sampai user memilih keluar
+            print("=== Manajemen Klinik CRUD ===")
+            print("1. Tambah Pasien (Create)")        # Opsi 1
+            print("2. Lihat Pasien (Read)")           # Opsi 2
+            print("3. Update Data Pasien (Update)")   # Opsi 3
+            print("4. Hapus Data Pasien (Delete)")    # Opsi 4
+            print("5. Cari Pasien Berdasarkan Nama")  # Opsi 5 (Search)
+            print("6. Keluar")                        # Opsi 6
 
-            pilihan = input("Pilih menu (1-5): ")  # Input pilihan menu
-            if pilihan == '1':  # Jika memilih 1
-                self.tambah_pasien()  # Panggil method tambah_pasien
-            elif pilihan == '2':  # Jika memilih 2
-                self.lihat_pasien()  # Panggil method lihat_pasien
-            elif pilihan == '3':  # Jika memilih 3
-                self.update_pasien()  # Panggil method update_pasien
-            elif pilihan == '4':  # Jika memilih 4
-                self.hapus_pasien()  # Panggil method hapus_pasien
-            elif pilihan == '5':  # Jika memilih 5
-                print("Program selesai.")  # Output konfirmasi keluar
-                break  
-            # Hentikan loop dan keluar program
-            else:  # Jika input tidak valid
-                print("Pilihan tidak valid.\n")  
-                # Output error
+            pilihan = input("Pilih menu (1-6): ")  # Input pilihan menu
+            if pilihan == '1':
+                self.tambah_pasien()
+            elif pilihan == '2':
+                self.lihat_pasien()
+            elif pilihan == '3':
+                self.update_pasien()
+            elif pilihan == '4':
+                self.hapus_pasien()
+            elif pilihan == '5':
+                self.cari_pasien()  # Method pencarian pasien
+            elif pilihan == '6':
+                print("Program selesai.")
+                break
+            else:
+                print("Pilihan tidak valid.\n")
 
 # Menjalankan program utama
 if __name__ == "__main__": 
